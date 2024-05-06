@@ -9,8 +9,9 @@ class RepositoryTab extends StatelessWidget {
   RepositoryTab({required this.repositories});
 
   void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+     Uri baseUrl = Uri.parse(url);
+    if (await canLaunchUrl(baseUrl)) {
+      await launchUrl(baseUrl,mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $url';
     }
